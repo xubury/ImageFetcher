@@ -40,7 +40,6 @@ class GuideCamera():
         os.add_dll_directory(dllPath)
         self.dll = cdll.LoadLibrary("./dll/win64/GuideSDK.dll")
 
-    def connectDevice(self, deviceID):
         thermalImagePath = os.path.join(os.getcwd(), 'img')
         deviceCount = self.dll.GetDeviceNum()
         if deviceCount > 0:
@@ -50,9 +49,8 @@ class GuideCamera():
                            stateCallback, None, 2, 0)
             self.dll.SetPalette(deviceID, 2)
             self.dll.ShowPalette(deviceID, 0)
-            return True
         else:
-            return False
+            raise Exception('No Guide device found.')
 
     def takeScreenShot(self):
         self.dll.TakeScreenshot(self.deviceID, b'./img', 3)
@@ -62,18 +60,13 @@ class GuideCamera():
 
 if __name__ == "__main__":
     thermalCam = GuideCamera()
-    if thermalCam.connectDevice(1):
-        print("Found device")
-        cv2.namedWindow("test")
-        while True:
-            k = cv2.waitKey(0)
-            if k == 27:
-                cv2.destroyAllWindows()
-                break
-            elif k == ord('r'):
-                thermalCam.takeScreenShot()
-            elif k == ord('a'):
-                thermalCam.autoFocus()
-    else:
-        print("No device")
-
+    cv2.namedWindow("test")
+    while True:
+        k = cv2.waitKey(0)
+        if k == 27:
+            cv2.destroyAllWindows()
+            break
+        elif k == ord('r'):
+            thermalCam.takeScreenShot()
+        elif k == ord('a'):
+            thermalCam.autoFocus()
