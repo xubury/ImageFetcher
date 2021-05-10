@@ -55,6 +55,10 @@ class GuideCamera():
     def takeScreenShot(self):
         self.camera.TakeScreenshot(self.deviceID, b'./img', 3)
 
+    # TODO:retrun a image
+    def retrieve():
+        print("Retrieve");
+
     def autoFocus(self):
         self.camera.FocusControl(self.deviceID, 4, 0)
 
