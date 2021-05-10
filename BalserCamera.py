@@ -7,6 +7,9 @@ class BalserCamera:
         self.camera.Open()
         self.camera.Width.SetValue(width)
         self.camera.Height.SetValue(height)
+        self.camera.GainAuto.SetValue("Continuous")
+        self.camera.BalanceWhiteAuto.SetValue("Continuous")
+        self.camera.ExposureAuto.SetValue("Continuous")
 
         self.converter = pylon.ImageFormatConverter()
         # converting to opencv bgr format
@@ -14,9 +17,6 @@ class BalserCamera:
         self.converter.OtputBitAlignment = pylon.OutputBitAlignment_MsbAligned
         # Grabing Continusely (video) with minimal delay
         self.camera.StartGrabbing(pylon.GrabStrategy_LatestImageOnly)
-        self.camera.GainAuto.SetValue("Continuous")
-        self.camera.BalanceWhiteAuto.SetValue("Continuous")
-        self.camera.ExposureAuto.SetValue("Continuous")
 
     def retrieve(self):
         grabResult = self.camera.RetrieveResult(5000, pylon.TimeoutHandling_ThrowException)
