@@ -35,31 +35,34 @@ def stateCallback(stateinfo, params):
     stateinfo
 
 class GuideCamera():
-    def __init__(self):
+    def __init__(self, deviceID):
         dllPath = os.path.join(os.getcwd(), "dll/win64")
         os.add_dll_directory(dllPath)
-        self.dll = cdll.LoadLibrary("./dll/win64/GuideSDK.dll")
+        self.camera = cdll.LoadLibrary("./dll/win64/GuideSDK.dll")
 
         thermalImagePath = os.path.join(os.getcwd(), 'img')
-        deviceCount = self.dll.GetDeviceNum()
-        if deviceCount > 0:
+        deviceCount = self.camera.GetDeviceNum()
+        if deviceCount >= deviceID:
             self.deviceID = deviceID
-            self.dll.SetPixelFormatEx(deviceID, 1)
-            self.dll.OpenStream(deviceID, rgbCallback, y16Callback,
+            self.camera.SetPixelFormatEx(deviceID, 1)
+            self.camera.OpenStream(deviceID, rgbCallback, y16Callback,
                            stateCallback, None, 2, 0)
-            self.dll.SetPalette(deviceID, 2)
-            self.dll.ShowPalette(deviceID, 0)
+            self.camera.SetPalette(deviceID, 2)
+            self.camera.ShowPalette(deviceID, 0)
         else:
             raise Exception('No Guide device found.')
 
     def takeScreenShot(self):
-        self.dll.TakeScreenshot(self.deviceID, b'./img', 3)
+        self.camera.TakeScreenshot(self.deviceID, b'./img', 3)
 
     def autoFocus(self):
-        self.dll.FocusControl(self.deviceID, 4, 0)
+        self.camera.FocusControl(self.deviceID, 4, 0)
+
+    def release(self):
+        self.camera.CloseStream(self.deviceID)
 
 if __name__ == "__main__":
-    thermalCam = GuideCamera()
+    thermalCam = GuideCamera(1)
     cv2.namedWindow("test")
     while True:
         k = cv2.waitKey(0)
@@ -70,3 +73,4 @@ if __name__ == "__main__":
             thermalCam.takeScreenShot()
         elif k == ord('a'):
             thermalCam.autoFocus()
+    thermalCam.release()
