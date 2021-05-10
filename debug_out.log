@@ -1,0 +1,81 @@
+2021/5/10 14:59:14:575 INFO GetDeviceNum in
+2021/5/10 14:59:14:577 MODULE_PORTING INFO socket_init OK
+2021/5/10 14:59:14:581 MODULE_PORTING INFO gethostbyname 0 192.168.1.100
+2021/5/10 14:59:14:581 MODULE_PORTING INFO socket_bind_ex OK
+2021/5/10 14:59:14:581 INFO searchDevice get_ip
+2021/5/10 14:59:14:583 INFO searchDevice index:f81d78707590  ip:192.168.1.168 ip_netmask:255.255.255.0 ip_gateway:192.168.1.1 ip_dnsip:192.168.1.1
+2021/5/10 14:59:15:586 MODULE_PORTING ERROR socket_recvfrom Error 10060
+2021/5/10 14:59:15:586 INFO Exit searchDevice ip index=0!
+2021/5/10 14:59:15:586 INFO searchDevice index=0! The host has 1 IP. count=1
+2021/5/10 14:59:15:586 INFO getArmPort  no  file config.ini
+2021/5/10 14:59:15:587 INFO sendCmdAndRecv cmd 0x6b  ir_get_init_param  success width=640&hight=480&video_type=0&curveLength=32768&arm_version=V2.22&product_name=ZU01AH&measure_modele=IPT384B&y16_fps=20&temp_unit=0&dhcp_enable=0&display_max_min_status=0&alarm_max_temp=0&alarm_min_temp=0&alarm_enable=0&alarm_status=0&osd_status=0&osd_x=0&osd_y=0&osd_string=
+2021/5/10 14:59:15:590 INFO getPortsInfo: ir_get_server_port=armPort=4953&fpgaPort=4954&y16Port=4955  ret=59
+2021/5/10 14:59:15:590 INFO GetDeviceNum out. Device num = 1
+2021/5/10 14:59:15:590 INFO SetPixelFormatEx devID:1   pixelFormat=1
+2021/5/10 14:59:15:590 INFO OpenStream in. devID = 1
+2021/5/10 14:59:15:590 INFO checkDeviceInfo in. id=1, 192.168.1.168 ZU01AH 640*480 IPT384B
+2021/5/10 14:59:15:593 INFO sendCmdAndRecv cmd 0x6b  ir_get_init_param  success width=640&hight=480&video_type=0&curveLength=32768&arm_version=V2.22&product_name=ZU01AH&measure_modele=IPT384B&y16_fps=20&temp_unit=0&dhcp_enable=0&display_max_min_status=0&alarm_max_temp=0&alarm_min_temp=0&alarm_enable=0&alarm_status=0&osd_status=0&osd_x=0&osd_y=0&osd_string=
+2021/5/10 14:59:15:593 MODULE_PORTING INFO SET BUFSIZE 524288, 4
+2021/5/10 14:59:15:593 MODULE_Y16 INFO Y16 openStream socket connect ret=1.
+2021/5/10 14:59:15:593 MODULE_Y16 INFO Y16 openStream w=640 h=480.
+2021/5/10 14:59:15:593 INFO RingBuffer size = 8388608
+2021/5/10 14:59:15:593 INFO PlpControl devID:1
+2021/5/10 14:59:15:595 INFO sendCmdAndRecv cmd 0x6c  ir_get_plp_point_info  success ir_add_plp_point_info=
+2021/5/10 14:59:15:595 INFO PlpControl devID:1
+2021/5/10 14:59:15:597 INFO sendCmdAndRecv cmd 0x6c  ir_get_plp_line_info  success ir_add_plp_line_info=
+2021/5/10 14:59:15:597 INFO PlpControl devID:1
+2021/5/10 14:59:15:601 INFO sendCmdAndRecv cmd 0x6c  ir_get_plp_rect_info  success ir_add_plp_rect_info=
+2021/5/10 14:59:15:603 MODULE_VIDEO INFO Open stream! url = rtsp://192.168.1.168:8554/video
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO Open input stream success!
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO Find stream info!
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO -------------Media Info------------
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO media format:
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO video type:H264
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO width:0
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO height:0
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO pix format:-1
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO avg_frame_rate:0
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO frame_rate:0
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO time_base:0-1
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO gop_size:12
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO bit_rate:0
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO display_aspect_ratio:0-0
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO sample_aspect_ratio:0-1
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO -------------End Info------------
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO Init H264 decoder!
+2021/5/10 14:59:15:668 MODULE_VIDEO INFO Start recv stream success!
+2021/5/10 14:59:15:668 MODULE_PORTING INFO thread_create 0x32850450
+2021/5/10 14:59:15:670 INFO OpenStream device 1 192.168.1.168 success
+2021/5/10 14:59:15:670 INFO SetPalette devID:1   palette=2
+2021/5/10 14:59:15:672 INFO send 0x4e, CMD_SET_PALETTE, ret=10
+2021/5/10 14:59:15:672 INFO ShowPalette devID:1
+2021/5/10 14:59:15:672 INFO send 0x5e, CMD_SHOW_PALETTE, ret=10
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO -------------Decode Video Info------------
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO video type:H264
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO width:640
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO height:480
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO pix format:YUVJ420P
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO frame_rate:25
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO time_base:1-50
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO gop_size:12
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO bit_rate:200000
+2021/5/10 14:59:15:720 MODULE_VIDEO INFO -------------End Info------------
+2021/5/10 14:59:16:907 INFO TakeScreenshot devID:1
+2021/5/10 14:59:16:914 MODULE_VIDEO INFO saveRgbAsJpg success!
+2021/5/10 14:59:16:914 INFO TakeScreenshot success! ID=1 path=./img/2021510/2021510145916907.jpg, type=3
+2021/5/10 14:59:22:67 INFO TakeScreenshot devID:1
+2021/5/10 14:59:22:73 MODULE_VIDEO INFO saveRgbAsJpg success!
+2021/5/10 14:59:22:73 INFO TakeScreenshot success! ID=1 path=./img/2021510/202151014592267.jpg, type=3
+2021/5/10 14:59:25:598 INFO TakeScreenshot devID:1
+2021/5/10 14:59:25:604 MODULE_VIDEO INFO saveRgbAsJpg success!
+2021/5/10 14:59:25:604 INFO TakeScreenshot success! ID=1 path=./img/2021510/2021510145925598.jpg, type=3
+2021/5/10 14:59:42:544 INFO FocusControl devID:1
+2021/5/10 14:59:42:544 INFO send 0x49, CMD_AUTO_FOCUS, ret=10
+2021/5/10 14:59:46:407 INFO TakeScreenshot devID:1
+2021/5/10 14:59:46:413 MODULE_VIDEO INFO saveRgbAsJpg success!
+2021/5/10 14:59:46:413 INFO TakeScreenshot success! ID=1 path=./img/2021510/2021510145946407.jpg, type=3
+2021/5/10 14:59:53:808 INFO FocusControl devID:1
+2021/5/10 14:59:53:809 INFO send 0x49, CMD_AUTO_FOCUS, ret=10
+2021/5/10 14:59:57:348 INFO TakeScreenshot devID:1
+2021/5/10 14:59:57:452 MODULE_VIDEO INFO saveRgbAsJpg success!
+2021/5/10 14:59:57:452 INFO TakeScreenshot success! ID=1 path=./img/2021510/2021510145957348.jpg, type=3

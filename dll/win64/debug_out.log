@@ -1,0 +1,9 @@
+2021/5/10 12:43:3:339 INFO GetDeviceNum in
+2021/5/10 12:43:3:363 MODULE_PORTING INFO socket_init OK
+2021/5/10 12:43:3:375 MODULE_PORTING INFO gethostbyname 0 192.168.1.144
+2021/5/10 12:43:3:375 MODULE_PORTING INFO socket_bind_ex OK
+2021/5/10 12:43:3:375 INFO searchDevice get_ip
+2021/5/10 12:43:4:375 MODULE_PORTING ERROR socket_recvfrom Error 10060
+2021/5/10 12:43:4:375 INFO Exit searchDevice ip index=0!
+2021/5/10 12:43:4:375 INFO searchDevice index=0! The host has 1 IP. count=0
+2021/5/10 12:43:4:375 INFO GetDeviceNum out. Device num = 0
