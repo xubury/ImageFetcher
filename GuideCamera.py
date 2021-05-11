@@ -69,6 +69,8 @@ class GuideCamera():
     def takeScreenShot(self):
         self.camera.TakeScreenshot(self.deviceID, b'./img', 3)
 
+    # retrieve temperature and RGB image, 
+    # the RGB value are mapped according to (tempuratue - minTemp) / (maxTemp - minTemp)
     def retrieve(self, minTemp, maxTemp):
         self.camera.GetTempMatrix(
             self.deviceID, self.tempMatrix.ctypes.data_as(POINTER(c_float)), 640, 480)
@@ -77,7 +79,8 @@ class GuideCamera():
         self.gray[self.gray < 0] = 0
         self.gray *= 255
         self.gray = np.round(self.gray)
-        self.image = cv2.applyColorMap(self.gray.astype(np.uint8), cv2.COLORMAP_HOT)
+        self.image = cv2.applyColorMap(
+            self.gray.astype(np.uint8), cv2.COLORMAP_HOT)
         return self.tempMatrix, self.image
 
     def autoFocus(self):
