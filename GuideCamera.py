@@ -69,7 +69,7 @@ class GuideCamera():
     def takeScreenShot(self):
         self.camera.TakeScreenshot(self.deviceID, b'./img', 3)
 
-    # retrieve temperature and RGB image, 
+    # retrieve temperature and RGB image,
     # the RGB value are mapped according to (tempuratue - minTemp) / (maxTemp - minTemp)
     def retrieve(self, minTemp, maxTemp):
         self.camera.GetTempMatrix(
