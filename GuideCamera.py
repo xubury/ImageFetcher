@@ -62,7 +62,7 @@ class GuideCamera():
             self.camera.ShowPalette(deviceID, 0)
             self.image = np.zeros((480, 640, 3), dtype=np.uint8)
             self.gray = np.zeros((480, 640), dtype=np.float32)
-            self.matrix = np.zeros((480, 640), dtype=np.float32)
+            self.tempMatrix = np.zeros((480, 640), dtype=np.float32)
         else:
             raise Exception('No Guide device found.')
 
@@ -71,14 +71,14 @@ class GuideCamera():
 
     def retrieve(self, minTemp, maxTemp):
         self.camera.GetTempMatrix(
-            self.deviceID, self.matrix.ctypes.data_as(POINTER(c_float)), 640, 480)
-        self.gray = (self.matrix - minTemp) / (maxTemp - minTemp)
+            self.deviceID, self.tempMatrix.ctypes.data_as(POINTER(c_float)), 640, 480)
+        self.gray = (self.tempMatrix - minTemp) / (maxTemp - minTemp)
         self.gray[self.gray > 1] = 1
         self.gray[self.gray < 0] = 0
         self.gray *= 255
         self.gray = np.round(self.gray)
         self.image = cv2.applyColorMap(self.gray.astype(np.uint8), cv2.COLORMAP_HOT)
-        return self.matrix, self.image
+        return self.tempMatrix, self.image
 
     def autoFocus(self):
         self.camera.FocusControl(self.deviceID, 4, 0)
