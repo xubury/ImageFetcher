@@ -50,8 +50,8 @@ struct DEVICE_INFO
 	UINT16_T fpgaPort;
 	UINT16_T y16Port;
 	CHAR_T  model[16];
-	BOOL_T  isConnected;		//±¾»úÊÇ·ñÒÑÁ¬½Óµ½Éè±¸¡£Èç¹ûÒÑÁ¬½Ó²»ÄÜÖØ¸´ÔÙ´ÎÁ¬½ÓÍ¬Ò»Ì¨Éè±¸¡£
-	WORKING_MODE workingMode;	//±¾»úÁ¬½Óµ½Éè±¸Ê±ÉèÖÃµÄ¹¤×÷·½Ê½£¬0 NONE_MODE±íÊ¾Î´Á¬½Ó¡£
+	BOOL_T  isConnected;		//æœ¬æœºæ˜¯å¦å·²è¿žæŽ¥åˆ°è®¾å¤‡ã€‚å¦‚æžœå·²è¿žæŽ¥ä¸èƒ½é‡å¤å†æ¬¡è¿žæŽ¥åŒä¸€å°è®¾å¤‡ã€‚
+	WORKING_MODE workingMode;	//æœ¬æœºè¿žæŽ¥åˆ°è®¾å¤‡æ—¶è®¾ç½®çš„å·¥ä½œæ–¹å¼ï¼Œ0 NONE_MODEè¡¨ç¤ºæœªè¿žæŽ¥ã€‚
 public:
 	DEVICE_INFO()
 	{
@@ -59,13 +59,13 @@ public:
 	}
 };
 
-// RGBÊÓÆµ»Øµ÷²ÎÊýÊý¾Ý½á¹¹
+// RGBè§†é¢‘å›žè°ƒå‚æ•°æ•°æ®ç»“æž„
 struct GD_RGB_INFO
 {
-	BYTE_T *rgbData;			// RGBÊý¾Ý
-	INT32_T imgWidth;			// Í¼Ïñ¿í
-	INT32_T imgHeight;			// Í¼Ïñ¸ß
-	INT32_T devID;				// rgbData¶ÔÓ¦µÄÉè±¸ID
+	BYTE_T *rgbData;			// RGBæ•°æ®
+	INT32_T imgWidth;			// å›¾åƒå®½
+	INT32_T imgHeight;			// å›¾åƒé«˜
+	INT32_T devID;				// rgbDataå¯¹åº”çš„è®¾å¤‡ID
 public:
 	GD_RGB_INFO()
 	{
@@ -73,13 +73,13 @@ public:
 	}
 };
 
-// Y16»Øµ÷²ÎÊýÊý¾Ý½á¹¹
+// Y16å›žè°ƒå‚æ•°æ•°æ®ç»“æž„
 struct GD_Y16_INFO
 {
-	INT16_T *y16Data;			// Y16Êý¾Ý
-	INT32_T imgWidth;			// Í¼Ïñ¿í
-	INT32_T imgHeight;			// Í¼Ïñ¸ß
-	INT32_T devID;				// y16Data¶ÔÓ¦µÄÉè±¸ID
+	INT16_T *y16Data;			// Y16æ•°æ®
+	INT32_T imgWidth;			// å›¾åƒå®½
+	INT32_T imgHeight;			// å›¾åƒé«˜
+	INT32_T devID;				// y16Dataå¯¹åº”çš„è®¾å¤‡ID
 public:
 	GD_Y16_INFO()
 	{
@@ -89,11 +89,11 @@ public:
 
 typedef enum
 {
-	STREAM_DISCONNECT = 0,	// ÒÑ¶Ï¿ª 
-	STREAM_CONNECT = 1,		// ÒÑÁ¬½Ó 
+	STREAM_DISCONNECT = 0,	// å·²æ–­å¼€ 
+	STREAM_CONNECT = 1,		// å·²è¿žæŽ¥ 
 }CONNECT_STATE;
 
-// ÍøÂç×´Ì¬»Øµ÷²ÎÊýÊý¾Ý½á¹¹
+// ç½‘ç»œçŠ¶æ€å›žè°ƒå‚æ•°æ•°æ®ç»“æž„
 struct GD_STATE_INFO
 {
 	CONNECT_STATE state;
@@ -129,13 +129,13 @@ public:
 	}
 };
 
-// ¾ØÐÎÇøÓòÊý¾Ý½á¹¹
+// çŸ©å½¢åŒºåŸŸæ•°æ®ç»“æž„
 struct RECT_T
 {
-	INT16_T x;	// ¾ØÐÎ×óÉÏ½ÇX×ø±ê
-	INT16_T y;	// ¾ØÐÎ×óÉÏ½ÇY×ø±ê
-	INT32_T w;	// ¾ØÐÎ¿í¶È
-	INT32_T h;	// ¾ØÐÎ¸ß¶È
+	INT16_T x;	// çŸ©å½¢å·¦ä¸Šè§’Xåæ ‡
+	INT16_T y;	// çŸ©å½¢å·¦ä¸Šè§’Yåæ ‡
+	INT32_T w;	// çŸ©å½¢å®½åº¦
+	INT32_T h;	// çŸ©å½¢é«˜åº¦
 public:
 	RECT_T()
 	{
@@ -143,12 +143,12 @@ public:
 	}
 };
 
-// ÎÂ¶ÈµãÊý¾Ý½á¹¹
+// æ¸©åº¦ç‚¹æ•°æ®ç»“æž„
 struct TEMP_POINT
 {
-	INT16_T x;		// ÎÂ¶ÈµãX×ø±ê
-	INT16_T y;		// ÎÂ¶ÈµãY×ø±ê
-	FLOAT_T temp;	// ÎÂ¶ÈµãÎÂ¶È
+	INT16_T x;		// æ¸©åº¦ç‚¹Xåæ ‡
+	INT16_T y;		// æ¸©åº¦ç‚¹Yåæ ‡
+	FLOAT_T temp;	// æ¸©åº¦ç‚¹æ¸©åº¦
 public:
 	TEMP_POINT()
 	{
@@ -156,13 +156,13 @@ public:
 	}
 };
 
-// ÎÂ¶È»Øµ÷²ÎÊýÊý¾Ý½á¹¹
+// æ¸©åº¦å›žè°ƒå‚æ•°æ•°æ®ç»“æž„
 struct GD_TEMP_INFO
 {
-	TEMP_POINT highTemp;		// ¸ßÎÂ
-	TEMP_POINT lowTemp;			// µÍÎÂ
-	TEMP_POINT avgTemp;			// Æ½¾ùÎÂ
-	TEMP_POINT centTemp;		// ÖÐÐÄÎÂ
+	TEMP_POINT highTemp;		// é«˜æ¸©
+	TEMP_POINT lowTemp;			// ä½Žæ¸©
+	TEMP_POINT avgTemp;			// å¹³å‡æ¸©
+	TEMP_POINT centTemp;		// ä¸­å¿ƒæ¸©
 	INT32_T devID;
 public:
 	GD_TEMP_INFO()
@@ -173,11 +173,11 @@ public:
 
 typedef enum
 {
-	CALC_TEMP_HIGH = 1,			//Ö»¼ÆËã×î¸ßÎÂ
-	CALC_TEMP_LOW = 2,			//Ö»¼ÆËã×îµÍÎÂ
-	CALC_TEMP_AVG = 3,			//Ö»¼ÆËãÆ½¾ùÎÂ
-	CALC_TEMP_ALL = 4,			//Í¬Ê±¼ÆËã×î¸ßÎÂ¡¢×îµÍÎÂ¡¢Æ½¾ùÎÂ¶È
-	CALC_TEMP_CENTRE = 5,		//Ö»¼ÆËãÖÐÐÄÎÂ
+	CALC_TEMP_HIGH = 1,			//åªè®¡ç®—æœ€é«˜æ¸©
+	CALC_TEMP_LOW = 2,			//åªè®¡ç®—æœ€ä½Žæ¸©
+	CALC_TEMP_AVG = 3,			//åªè®¡ç®—å¹³å‡æ¸©
+	CALC_TEMP_ALL = 4,			//åŒæ—¶è®¡ç®—æœ€é«˜æ¸©ã€æœ€ä½Žæ¸©ã€å¹³å‡æ¸©åº¦
+	CALC_TEMP_CENTRE = 5,		//åªè®¡ç®—ä¸­å¿ƒæ¸©
 }CALC_TEMP_TYPE;
 
 typedef enum
@@ -187,7 +187,7 @@ typedef enum
 	SHUTTER_OPEN = 3,
 	AUTO_SHUTTER_ENABLE = 4,
 	AUTO_SHUTTER_DISABLE = 5,
-	SET_SHUTTER_TIME = 6,		//µ¥Î»£º·ÖÖÓ¡£
+	SET_SHUTTER_TIME = 6,		//å•ä½ï¼šåˆ†é’Ÿã€‚
 	GET_SHUTTER_TIME = 7
 }CMD_SHUTTER_TYPE;
 
@@ -227,7 +227,7 @@ typedef VOID(*Y16DataCB)(GD_Y16_INFO y16Info, VOID *param);
 typedef VOID(*StateCB)(GD_STATE_INFO stateInfo, VOID *param);
 typedef VOID(*TempCB)(GD_TEMP_INFO tempInfo, VOID *param);
 
-// µç×Ó±ä½¹±¶Êý
+// ç”µå­å˜ç„¦å€æ•°
 typedef enum 
 {
 	GD_EZ_1,
@@ -235,7 +235,7 @@ typedef enum
 	GD_EZ_4
 }GD_EZ_TIMES;
 
-// µç×Ó±ä½¹ÐÅÏ¢
+// ç”µå­å˜ç„¦ä¿¡æ¯
 struct GD_EZ_INFO
 {
 	GD_EZ_TIMES nExLevel;
@@ -250,19 +250,19 @@ public:
 
 typedef enum
 {
-	ADD_RECT_ANALYSIS = 1,		//Ìí¼Ó¾ØÐÎ·ÖÎö¶ÔÏó
-	DELETE_TEMP_ANALYSIS = 2,	//É¾³ý·ÖÎö¶ÔÏó
-	ADD_TEMP_DIS = 3,			//ÏÔÊ¾ÎÂ¶È·ÖÎö£¬deleteÓÃDELETE_TEMP_ANALYSIS
-	TEMP_WITH_CURSOR = 4,		//Êý×ÖÎÂ¸úËæ¹â±ê£¬1ÆôÓÃ£¬0½ûÓÃ¡£
-	GET_RECT_ANALYSIS = 5,		//»ñÈ¡¾ØÐÎ·ÖÎö¶ÔÏóÐÅÏ¢
+	ADD_RECT_ANALYSIS = 1,		//æ·»åŠ çŸ©å½¢åˆ†æžå¯¹è±¡
+	DELETE_TEMP_ANALYSIS = 2,	//åˆ é™¤åˆ†æžå¯¹è±¡
+	ADD_TEMP_DIS = 3,			//æ˜¾ç¤ºæ¸©åº¦åˆ†æžï¼Œdeleteç”¨DELETE_TEMP_ANALYSIS
+	TEMP_WITH_CURSOR = 4,		//æ•°å­—æ¸©è·Ÿéšå…‰æ ‡ï¼Œ1å¯ç”¨ï¼Œ0ç¦ç”¨ã€‚
+	GET_RECT_ANALYSIS = 5,		//èŽ·å–çŸ©å½¢åˆ†æžå¯¹è±¡ä¿¡æ¯
 }CMD_ANALYSIS_TYPE;
 
 struct ANALYSIS_PARAM_INFO
 {
-	INT32_T combinaType;		//7ÖÖÎÂ¶ÈÐÅÏ¢×éºÏ·½Ê½£º0 MAX 1 MIN 2 AVG 3 MAX+MIN 4 MAX+AVG 5 MIN+AVG 6 MAX+MIN+AVG
+	INT32_T combinaType;		//7ç§æ¸©åº¦ä¿¡æ¯ç»„åˆæ–¹å¼ï¼š0 MAX 1 MIN 2 AVG 3 MAX+MIN 4 MAX+AVG 5 MIN+AVG 6 MAX+MIN+AVG
 	RECT_T rect;
-	BOOL_T	enableTempWithCursor;//Ê¹ÄÜÊý×ÖÎÂ¸úËæ¹â±ê£¬1ÆôÓÃ£¬0½ûÓÃ¡£
-	INT32_T	analyzeMode;		//·ÖÎöÄ£Ê½ 0-¹Ø±Õ·ÖÎö 1-È«ÆÁ·ÖÎö 2-ÇøÓò·ÖÎö
+	BOOL_T	enableTempWithCursor;//ä½¿èƒ½æ•°å­—æ¸©è·Ÿéšå…‰æ ‡ï¼Œ1å¯ç”¨ï¼Œ0ç¦ç”¨ã€‚
+	INT32_T	analyzeMode;		//åˆ†æžæ¨¡å¼ 0-å…³é—­åˆ†æž 1-å…¨å±åˆ†æž 2-åŒºåŸŸåˆ†æž
 public:
 	ANALYSIS_PARAM_INFO()
 	{
@@ -270,12 +270,12 @@ public:
 	}
 };
 
-// ÏÔÊ¾É«´øÐÅÏ¢·½Ê½
+// æ˜¾ç¤ºè‰²å¸¦ä¿¡æ¯æ–¹å¼
 enum SHOW_PALETTE_TYPE
 {
-	PALETTE_HIDE = 0,		//²»ÏÔÊ¾
-	PALETTE_LEFT = 1,		//ÏÔÊ¾×ó±ß
-	PALETTE_RIGHT = 2,		//ÏÔÊ¾ÓÒ±ß
+	PALETTE_HIDE = 0,		//ä¸æ˜¾ç¤º
+	PALETTE_LEFT = 1,		//æ˜¾ç¤ºå·¦è¾¹
+	PALETTE_RIGHT = 2,		//æ˜¾ç¤ºå³è¾¹
 };
 
 struct VERSION_INFO
@@ -294,11 +294,11 @@ public:
 
 struct STRING_INFO
 {
-	INT32_T status;			//Ê¹ÄÜ×´Ì¬£¬1 ÏÔÊ¾×Ö·û´®£¬0 ²»ÏÔÊ¾×Ö·û´®¡£
+	INT32_T status;			//ä½¿èƒ½çŠ¶æ€ï¼Œ1 æ˜¾ç¤ºå­—ç¬¦ä¸²ï¼Œ0 ä¸æ˜¾ç¤ºå­—ç¬¦ä¸²ã€‚
 	INT32_T x;
 	INT32_T y;
 	INT32_T contentLen;
-	CHAR_T  content[1280];	//Unicode, UTF16£¬Ìí¼Ó³¤×Ö·û´®
+	CHAR_T  content[1280];	//Unicode, UTF16ï¼Œæ·»åŠ é•¿å­—ç¬¦ä¸²
 public:
 	STRING_INFO()
 	{
@@ -308,18 +308,18 @@ public:
 
 typedef enum
 {
-	ADD_STRING = 1,			//Ìí¼Ó×Ö·û´®
-	GET_STRING = 2,			//»ñÈ¡×Ö·û´®
-	ENABLE_STRING = 3,		//Ê¹ÄÜ×Ö·û´®
-	DISABLE_STRING = 4,		//½ûÓÃ×Ö·û´®
+	ADD_STRING = 1,			//æ·»åŠ å­—ç¬¦ä¸²
+	GET_STRING = 2,			//èŽ·å–å­—ç¬¦ä¸²
+	ENABLE_STRING = 3,		//ä½¿èƒ½å­—ç¬¦ä¸²
+	DISABLE_STRING = 4,		//ç¦ç”¨å­—ç¬¦ä¸²
 }CMD_STRING_TYPE;
 
 struct ALARM_INFO
 {
-	INT32_T state;		//1 ¸ßÎÂ±¨¾¯£»	2 µÍÎÂ±¨¾¯£» 3 ¸ßµÍÎÂÍ¬Ê±±¨¾¯¡£0£¬È¡Ïû±¨¾¯¡£
+	INT32_T state;		//1 é«˜æ¸©æŠ¥è­¦ï¼›	2 ä½Žæ¸©æŠ¥è­¦ï¼› 3 é«˜ä½Žæ¸©åŒæ—¶æŠ¥è­¦ã€‚0ï¼Œå–æ¶ˆæŠ¥è­¦ã€‚
 	INT32_T highLimit;
 	INT32_T lowLimit;
-	INT32_T mode;		//0 ³ÖÐø±¨¾¯£» 1 ×Ô¶¯Í£Ö¹
+	INT32_T mode;		//0 æŒç»­æŠ¥è­¦ï¼› 1 è‡ªåŠ¨åœæ­¢
 public:
 	ALARM_INFO()
 	{
@@ -334,26 +334,26 @@ typedef enum
 	ALARM_HIGH = 3,	
 	ALARM_LOW = 4,	
 	ALARM_MODE = 5,	
-	ALARM_ALL_PARAM = 6, //´ËÃüÁîÒ»´ÎÍê³ÉÒÔÉÏ5¸ö²ÎÊýÒ»ÆðÉèÖÃ¡£Ê¹ÓÃÉÏÃæ5¸öÃüÁî¿ÉÖð¸ö²ÎÊý·Ö±ðÉèÖÃ¡£
+	ALARM_ALL_PARAM = 6, //æ­¤å‘½ä»¤ä¸€æ¬¡å®Œæˆä»¥ä¸Š5ä¸ªå‚æ•°ä¸€èµ·è®¾ç½®ã€‚ä½¿ç”¨ä¸Šé¢5ä¸ªå‘½ä»¤å¯é€ä¸ªå‚æ•°åˆ†åˆ«è®¾ç½®ã€‚
 }CMD_ALARM_TYPE;
 
-/*È¡Öµ·¶Î§ËµÃ÷£º
-·¢ÉäÂÊ£¨0.01~1.00£©
-¾àÀë£¨0.4m~25m£©
-Êª¶È(0 % ~100 % )
-±³¾°ÎÂ¶È(0.1¡æ~650¡æ)
-B²ÎÊý£¨ - 100¡æ~100¡æ£©
-KF²ÎÊý£¨1~100£©*/
+/*å–å€¼èŒƒå›´è¯´æ˜Žï¼š
+å‘å°„çŽ‡ï¼ˆ0.01~1.00ï¼‰
+è·ç¦»ï¼ˆ0.4m~25mï¼‰
+æ¹¿åº¦(0 % ~100 % )
+èƒŒæ™¯æ¸©åº¦(0.1â„ƒ~650â„ƒ)
+Bå‚æ•°ï¼ˆ - 100â„ƒ~100â„ƒï¼‰
+KFå‚æ•°ï¼ˆ1~100ï¼‰*/
 struct CALC_PARAM_INFO
 {
-	FLOAT_T emiss;		//·¢ÉäÂÊ 0.01-1
-	FLOAT_T distance;	//¾àÀë	0.4-25
-	INT32_T humidity;	//Êª¶È	0-100
-	FLOAT_T backTemp;	//±³¾°ÎÂ¶È 0.1-650
-	INT32_T backFlag;	//±³ÎÂ¿ª¹Ø
+	FLOAT_T emiss;		//å‘å°„çŽ‡ 0.01-1
+	FLOAT_T distance;	//è·ç¦»	0.4-25
+	INT32_T humidity;	//æ¹¿åº¦	0-100
+	FLOAT_T backTemp;	//èƒŒæ™¯æ¸©åº¦ 0.1-650
+	INT32_T backFlag;	//èƒŒæ¸©å¼€å…³
 	FLOAT_T B;			//CorrectionTemp -100-100
 	INT32_T KF;			// 0-255
-	FLOAT_T transmittance;//Í¸¹ýÂÊ 0.00-100.00
+	FLOAT_T transmittance;//é€è¿‡çŽ‡ 0.00-100.00
 public:
 	CALC_PARAM_INFO()
 	{
@@ -371,17 +371,17 @@ enum CALC_PARAM_TYPE
 	CALC_PARAM_B = 6,
 	CALC_PARAM_KF = 7,
 	CALC_PARAM_TRANSMIT = 8,
-	CALC_PARAM_ALL = 9,		//ÒÔÉÏ8¸ö²âÎÂ²ÎÊýÒ»Æðset»òÕßget£¬Ò»ÌõÃüÁî¿ÉÒÔÍê³É¡£
-	CALC_PARAM_SAVE = 10,	//±£´æÇ°Ãæ²Ù×÷ÉèÖÃµÄ²ÎÊý£¬µôµçºóÔÙ¿ª»úÈÔÈ»ÓÐÐ§¡£
+	CALC_PARAM_ALL = 9,		//ä»¥ä¸Š8ä¸ªæµ‹æ¸©å‚æ•°ä¸€èµ·setæˆ–è€…getï¼Œä¸€æ¡å‘½ä»¤å¯ä»¥å®Œæˆã€‚
+	CALC_PARAM_SAVE = 10,	//ä¿å­˜å‰é¢æ“ä½œè®¾ç½®çš„å‚æ•°ï¼ŒæŽ‰ç”µåŽå†å¼€æœºä»ç„¶æœ‰æ•ˆã€‚
 };
 
 enum DEVICE_PARAM_TYPE
 {
-	DEVICE_PARAM_RANGE = 1,		//ÇÐ»»²âÎÂ·¶Î§£¬INT16_T¡£
-	DEVICE_PARAM_RSADDR = 2,	//UARTÐ£Ñé£¬INT32_T¡£
-	DEVICE_PARAM_UARTSPEED = 3,	//UARTËÙÂÊ£¬INT32_T¡£
-	BLACK_BODY_DIAMETER = 4,	//ºÚÌåÖ±¾¶£¬¸¡µã²ÎÊý¡£
-	AUTO_SWITCH_RANGE = 5,		//ÊÇ·ñÆôÓÃ×Ô¶¯ÇÐ»»²âÎÂ·¶Î§£¬INT32_T¡£1£¬×Ô¶¯ÇÐ»»¡£0£¬²»»á×Ô¶¯ÇÐ»»¡£
+	DEVICE_PARAM_RANGE = 1,		//åˆ‡æ¢æµ‹æ¸©èŒƒå›´ï¼ŒINT16_Tã€‚
+	DEVICE_PARAM_RSADDR = 2,	//UARTæ ¡éªŒï¼ŒINT32_Tã€‚
+	DEVICE_PARAM_UARTSPEED = 3,	//UARTé€ŸçŽ‡ï¼ŒINT32_Tã€‚
+	BLACK_BODY_DIAMETER = 4,	//é»‘ä½“ç›´å¾„ï¼Œæµ®ç‚¹å‚æ•°ã€‚
+	AUTO_SWITCH_RANGE = 5,		//æ˜¯å¦å¯ç”¨è‡ªåŠ¨åˆ‡æ¢æµ‹æ¸©èŒƒå›´ï¼ŒINT32_Tã€‚1ï¼Œè‡ªåŠ¨åˆ‡æ¢ã€‚0ï¼Œä¸ä¼šè‡ªåŠ¨åˆ‡æ¢ã€‚
 };
 
 enum DEVICE_PORT_TYPE
@@ -389,11 +389,11 @@ enum DEVICE_PORT_TYPE
 	DEVICE_Y16_PORT = 1,
 	DEVICE_ARM_PORT = 2,
 	DEVICE_FPGA_PORT = 3,
-	DEVICE_ALL_PORT = 4,	//ÒÔÉÏ3¸ö¶Ë¿ÚÐÅÏ¢Ò»Æðset»òÕßget£¬Ò»ÌõÃüÁî¿ÉÒÔÍê³É¡£
+	DEVICE_ALL_PORT = 4,	//ä»¥ä¸Š3ä¸ªç«¯å£ä¿¡æ¯ä¸€èµ·setæˆ–è€…getï¼Œä¸€æ¡å‘½ä»¤å¯ä»¥å®Œæˆã€‚
 	DEVICE_HTTP_PORT = 5,
 };
 
-// »­Ãæµ÷¹âÄ£Ê½
+// ç”»é¢è°ƒå…‰æ¨¡å¼
 enum ADJUST_LIGHT_MODE
 {
 	LIGHT_BRIGHTNESS_CONTRAST = 1,
@@ -422,7 +422,7 @@ typedef enum
 	LIGHT_CONTRAST = 3,
 	LIGHT_MAX_TEMP = 4,
 	LIGHT_MIN_TEMP = 5,
-	LIGHT_ALL_PARAM = 6, //´ËÃüÁîÒ»´ÎÍê³ÉÒÔÉÏ5¸ö²ÎÊýÒ»ÆðÉèÖÃ¡£Ê¹ÓÃÉÏÃæ5¸öÃüÁî¿ÉÖð¸ö²ÎÊý·Ö±ðÉèÖÃ¡£
+	LIGHT_ALL_PARAM = 6, //æ­¤å‘½ä»¤ä¸€æ¬¡å®Œæˆä»¥ä¸Š5ä¸ªå‚æ•°ä¸€èµ·è®¾ç½®ã€‚ä½¿ç”¨ä¸Šé¢5ä¸ªå‘½ä»¤å¯é€ä¸ªå‚æ•°åˆ†åˆ«è®¾ç½®ã€‚
 }CMD_LIGHT_TYPE;
 
 typedef enum
@@ -481,7 +481,7 @@ struct PLP_OBJ_INFO
 {
 	INT32_T id;
 	CHAR_T name[32];
-	INT32_T combinaType;		//7ÖÖÎÂ¶ÈÐÅÏ¢×éºÏ·½Ê½£º0 MAX 1 MIN 2 AVG 3 MAX+MIN 4 MAX+AVG 5 MIN+AVG 6 MAX+MIN+AVG
+	INT32_T combinaType;		//7ç§æ¸©åº¦ä¿¡æ¯ç»„åˆæ–¹å¼ï¼š0 MAX 1 MIN 2 AVG 3 MAX+MIN 4 MAX+AVG 5 MIN+AVG 6 MAX+MIN+AVG
 	BOOL_T isHide;
 	union {
 		POINT_T point;
@@ -495,12 +495,12 @@ public:
 	}
 };
 
-//ARMÉè±¸×´Ì¬Âë
+//ARMè®¾å¤‡çŠ¶æ€ç 
 #define ARM_NO_CURVE_FILE_ERROR						0x00000001
 #define ARM_Y16_ABNORMAL_ERROR						0x00000002
 #define ARM_NO_MEASURE_PARAM_ERROR					0x00000004
 #define ARM_FONT_MISSING_ERROR						0x00000008
-//FPGAÉè±¸×´Ì¬Âë
+//FPGAè®¾å¤‡çŠ¶æ€ç 
 #define FPGA_INVALID_SENSOR_CONFIG_ERROR			0x00000010
 #define FPGA_LOAD_FLASH_PARAM_FAILED_ERROR			0x00000020
 #define FPGA_DEVICE_WORK_TEMP_OVER_RANGE_ERROR		0x00000040
