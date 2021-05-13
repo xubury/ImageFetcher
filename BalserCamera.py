@@ -2,7 +2,7 @@ from pypylon import pylon
 import cv2
 
 class BalserCamera:
-    def __init__(self, width=2448, height=2050):
+    def __init__(self, width=2450, height=2052):
         self.camera = pylon.InstantCamera(pylon.TlFactory.GetInstance().CreateFirstDevice())
         self.camera.Open()
         self.camera.Width.SetValue(width)
